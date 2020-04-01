@@ -2,60 +2,127 @@
   <header class="homepage">
     <span class="logo">
       <a href="/">
-        <img src="../assets/logo-pure.png" alt />
+        <img
+          src="../assets/logo-pure.png"
+          alt
+        >
       </a>
     </span>
 
     <span class="menu">
-      <a class="menu-item active" href="/">{{$t("header.menu.homepage")}}</a>
-      <div @mouseenter="showSolution = true" class="menu-item solution-type" 
-        @mouseleave="showSolution = false">
+      <a
+        class="menu-item active"
+        href="/"
+      >{{ $t("header.menu.homepage") }}</a>
+      <div
+        class="menu-item solution-type"
+        @mouseenter="showSolution = true"
+        @mouseleave="showSolution = false"
+      >
         <a href="/index/solution">
           解决方案
-          <i class="iconfont icon-down"></i>
+          <i class="iconfont icon-down" />
         </a>
-        <div class="solution-list" v-show="showSolution">
+        <div
+          v-show="showSolution"
+          class="solution-list"
+        >
           <div class="solution-item left">
             <span class="solution-span">场景解决方案</span>
-            <a class="solution-info" href="https://datayi.cn/w/nPNY431R">
+            <a
+              class="solution-info"
+              href="https://datayi.cn/w/nPNY431R"
+            >
               疫情防控与复工复产
-              <img class="icon_hot" src="/index/icon_hot.png" />
+              <img
+                class="icon_hot"
+                src="/index/icon_hot.png"
+              >
             </a>
-            <a class="solution-info" href="/index/production_manage">
+            <a
+              class="solution-info"
+              href="/index/production_manage"
+            >
               生产管理系统
-              <img class="icon_new" src="/index/icon_new.png" />
+              <img
+                class="icon_new"
+                src="/index/icon_new.png"
+              >
             </a>
-            <a class="solution-info" href="/index/equipment_manage">设备管理与巡检</a>
-            <a class="solution-info" href="/index/order_management">订单管理_进销存</a>
-            <a class="solution-info" href="/index/quality_control">质量管理</a>
-            <a class="solution-info" href="/index/health_safety">HSE管理</a>
+            <a
+              class="solution-info"
+              href="/index/equipment_manage"
+            >设备管理与巡检</a>
+            <a
+              class="solution-info"
+              href="/index/order_management"
+            >订单管理_进销存</a>
+            <a
+              class="solution-info"
+              href="/index/quality_control"
+            >质量管理</a>
+            <a
+              class="solution-info"
+              href="/index/health_safety"
+            >HSE管理</a>
           </div>
-          <div class="solution-center-border"></div>
+          <div class="solution-center-border" />
           <div class="solution-item right">
             <span class="solution-span">行业解决方案</span>
-            <a class="solution-info" href="/index/solution_intelligent">智能制造</a>
-            <a class="solution-info" href="/index/solution_building">建筑施工</a>
-            <a class="solution-info" href="/index/solution_trading">贸易零售</a>
-            <a class="solution-info" href="/index/solution_car">汽车服务</a>
-            <a class="solution-info" href="/index/smart_campus">智慧校园</a>
+            <a
+              class="solution-info"
+              href="/index/solution_intelligent"
+            >智能制造</a>
+            <a
+              class="solution-info"
+              href="/index/solution_building"
+            >建筑施工</a>
+            <a
+              class="solution-info"
+              href="/index/solution_trading"
+            >贸易零售</a>
+            <a
+              class="solution-info"
+              href="/index/solution_car"
+            >汽车服务</a>
+            <a
+              class="solution-info"
+              href="/index/smart_campus"
+            >智慧校园</a>
           </div>
         </div>
       </div>
-      <a class="menu-item" href="/index/customer_case">客户案例</a>
-      <a class="menu-item" href="/index/func">功能</a>
-      <a class="menu-item" href="/index/price">定价</a>
-      <a class="menu-item" href="/index/custom">定制</a>
-      <a class="menu-item" href="https://hc.jiandaoyun.com" target="fx_help">帮助</a>
+      <a
+        class="menu-item"
+        href="/index/customer_case"
+      >客户案例</a>
+      <a
+        class="menu-item"
+        href="/index/func"
+      >功能</a>
+      <a
+        class="menu-item"
+        href="/index/price"
+      >定价</a>
+      <a
+        class="menu-item"
+        href="/index/custom"
+      >定制</a>
+      <a
+        class="menu-item"
+        href="https://hc.jiandaoyun.com"
+        target="fx_help"
+      >帮助</a>
     </span>
 
     <span class="action">
-      <a href="/signin"><el-button>{{$t("header.action.login")}}</el-button></a>
-      <a href="/register"><el-button>{{$t("header.action.register")}}</el-button></a>
+      <a href="/signin"><el-button>{{ $t("header.action.login") }}</el-button></a>
+      <a href="/register"><el-button>{{ $t("header.action.register") }}</el-button></a>
       <a class="menu-item lang-switch">
-        <i class="iconfont icon-global"></i>
+        <i class="iconfont icon-global" />
         <el-dropdown>
           <span class="el-dropdown-link">
-            下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
+            下拉菜单<i class="el-icon-arrow-down el-icon--right" />
           </span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>黄金糕</el-dropdown-item>
@@ -66,7 +133,7 @@
           </el-dropdown-menu>
         </el-dropdown>
         <span class="locale">简体中文</span>
-        <i class="iconfont icon-arrow-down"></i>
+        <i class="iconfont icon-arrow-down" />
       </a>
     </span>
   </header>
@@ -76,13 +143,13 @@
 
 export default {
   name: "Header",
-  mounted() {
-
-  },
   data() {
     return {
       showSolution: false
-    }
+    };
+  },
+  mounted() {
+
   }
 };
 </script>

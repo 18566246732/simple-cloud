@@ -8,4 +8,4 @@ export const zhSimplified = {
             login: "登录"
         }
     }
-}
+};

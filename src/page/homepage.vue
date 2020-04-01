@@ -1,26 +1,26 @@
 
 <template>
-    <div>
-        <Header />
-        <div class="main">
-            <section class="slider"></section>
-            <section class="workflow"></section>
-            <section class="advantages"></section>
-            <section class="industries"></section>
-            <section class="cases"></section>
-            <section class="help"></section>
-        </div>
-        <footer></footer>
+  <div>
+    <Header />
+    <div class="main">
+      <section class="slider" />
+      <section class="workflow" />
+      <section class="advantages" />
+      <section class="industries" />
+      <section class="cases" />
+      <section class="help" />
     </div>
+    <footer />
+  </div>
 </template>
 
 <script>
 import Header from "../components/Header";
 export default {
     components: {
-        Header  
-    } 
-}
+        Header
+    }
+};
 </script>
 
 <style scoped>
