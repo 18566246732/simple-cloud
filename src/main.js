@@ -5,18 +5,32 @@ import App from './App.vue';
 import VueI18n from 'vue-i18n';
 
 // 按需引入，减小runtime~chunk的大小
-import { Button, Dropdown, DropdownItem, DropdownMenu } from "element-ui";
-import 'element-ui/lib/theme-chalk/index.css';
+import { Carousel } from 'ant-design-vue';
+import 'ant-design-vue/dist/antd.css';
+
+import Button from "./components/Button.vue";
 
 import "./styles/index.scss";
+
+// 多语言数据
 import { zhSimplified } from "./locale/zh-simplified";
 import { zhTraditional } from "./locale/zh-traditional";
 
 Vue.config.productionTip = false;
 Vue.use(VueI18n);
 
-[Button, Dropdown, DropdownItem, DropdownMenu].forEach(component => {
+// 使用第三方组件
+[Carousel].forEach(component => {
   Vue.use(component);
+});
+
+// 注册全局组件
+const components = [
+  {'s-button': Button}
+];
+components.forEach(component => { // register component
+  const name = Object.keys(component)[0];
+  !Vue.options.components[name] && Vue.component(name, component[name]);
 });
 
 const messages = {
