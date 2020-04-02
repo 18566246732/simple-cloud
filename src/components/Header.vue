@@ -3,7 +3,7 @@
     <span class="logo">
       <a href="/">
         <img
-          src="../assets/logo-pure.png"
+          src="../assets/img/logo-pure.png"
           alt
         >
       </a>
@@ -35,8 +35,8 @@
             >
               疫情防控与复工复产
               <img
-                class="icon_hot"
-                src="/index/icon_hot.png"
+                class="icon-hot"
+                src="../assets/img/icon_hot.png"
               >
             </a>
             <a
@@ -45,8 +45,8 @@
             >
               生产管理系统
               <img
-                class="icon_new"
-                src="/index/icon_new.png"
+                class="icon-new"
+                src="../assets/img/icon_new.png"
               >
             </a>
             <a
@@ -116,40 +116,72 @@
     </span>
 
     <span class="action">
-      <a href="/signin"><el-button>{{ $t("header.action.login") }}</el-button></a>
-      <a href="/register"><el-button>{{ $t("header.action.register") }}</el-button></a>
-      <a class="menu-item lang-switch">
+      <a
+        href="/signin"
+      >
+        <s-button>{{ $t("header.action.login") }}</s-button>
+      </a>
+
+      <a
+        href="/register"
+      >
+        <s-button>{{ $t("header.action.register") }}</s-button>
+      </a>
+      <a
+        ref="langSwitch"
+        class="menu-item lang-switch"
+        @click="showLangSelectionPanel = true"
+      >
         <i class="iconfont icon-global" />
-        <el-dropdown>
-          <span class="el-dropdown-link">
-            下拉菜单<i class="el-icon-arrow-down el-icon--right" />
-          </span>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>黄金糕</el-dropdown-item>
-            <el-dropdown-item>狮子头</el-dropdown-item>
-            <el-dropdown-item>螺蛳粉</el-dropdown-item>
-            <el-dropdown-item disabled>双皮奶</el-dropdown-item>
-            <el-dropdown-item divided>蚵仔煎</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-        <span class="locale">简体中文</span>
-        <i class="iconfont icon-arrow-down" />
+        <span class="locale">{{ $t("header.action.zhS") }}</span>
+        <!-- TODO: -->
+        <!-- <i class="el-icon-arrow-down el-icon--right" /> -->
+        <div
+          v-if="showLangSelectionPanel"
+          class="lang-list"
+        >
+          <div
+            class="lang-item"
+            @click="selectedLang = 'zhS'"
+          >
+            {{ $t("header.action.zhS") }}
+            <i
+              v-if="selectedLang === 'zhS'"
+              class="iconfont icon-ok"
+            />
+          </div>
+          <div
+            class="lang-item"
+            @click="selectedLang = 'zhT'"
+          >
+            {{ $t("header.action.zhT") }}
+            <i
+              v-if="selectedLang === 'zhT'"
+              class="iconfont icon-ok"
+            />
+          </div>
+        </div>
       </a>
     </span>
   </header>
 </template>
 
 <script>
-
 export default {
   name: "Header",
   data() {
     return {
-      showSolution: false
+      showSolution: false,
+      showLangSelectionPanel: false,
+      selectedLang: 'zhS'
     };
   },
   mounted() {
-
+    document.addEventListener('click', (e) => {
+      if (!this.$refs.langSwitch.contains(e.target)) {
+        this.showLangSelectionPanel = false;
+      }
+    });
   }
 };
 </script>
@@ -174,6 +206,14 @@ export default {
       width: 117px;
       margin-top: 15px;
     }
+  }
+  .menu {
+    position: absolute;
+    top: 0;
+    left: 180px;
+    right: 0;
+    background: 0 0;
+    text-align: left;
   }
   .menu-item {
     padding: 0 25px;
@@ -204,8 +244,8 @@ export default {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  -webkit-box-shadow: 0 1px 8px 0 rgba(0,0,0,.2);
-  box-shadow: 0 1px 8px 0 rgba(0,0,0,.2);
+  -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2);
   background: #fff;
   font-size: 14px;
   overflow: hidden;
@@ -214,23 +254,23 @@ export default {
 
 .solution-center-border {
   border-left: 1px dashed #e9e9e9;
-    height: 180px;
-    width: 2px;
-    position: absolute;
-    left: 186px;
-    top: 57px;
+  height: 180px;
+  width: 2px;
+  position: absolute;
+  left: 186px;
+  top: 57px;
 }
 
 .solution-item {
   width: 186px;
-    line-height: 22px;
-    display: grid;
-    color: #474b51;
-    text-align: left;
-    padding: 0 10px;
-    float: left;
-    font-size: 16px;
-    font-weight: 600;
+  line-height: 22px;
+  display: grid;
+  color: #474b51;
+  text-align: left;
+  padding: 0 10px;
+  float: left;
+  font-size: 16px;
+  font-weight: 600;
   &.left {
     float: left;
   }
@@ -241,13 +281,101 @@ export default {
 
 .solution-info {
   height: 32px;
-    line-height: 20px;
+  line-height: 20px;
+  color: #474b51;
+  text-align: left;
+  float: left;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 6px 10px;
+  border-radius: 5px;
+  &:hover {
+    background: #f4f4f4;
+  }
+}
+
+// 覆盖element-ui样式
+
+/deep/ .popper__arrow {
+  // TODO: avoid important
+  display: none !important;
+}
+
+.lang-list {
+  position: absolute;
+    top: 40px;
+    right: -12px;
+    background: #fff;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    font-size: 14px;
+    -webkit-box-shadow: 0 1px 8px 0 rgba(0,0,0,.2);
+    box-shadow: 0 1px 8px 0 rgba(0,0,0,.2);
+    overflow: hidden;
+}
+
+.lang-item {
+      width: 127px;
+    height: 40px;
+    line-height: 40px;
     color: #474b51;
     text-align: left;
-    float: left;
-    font-size: 14px;
-    font-weight: 400;
-    padding: 6px 10px;
-    border-radius: 5px;
+    padding: 0 15px;
+    &:hover {
+      background: $primary-color-light;
+    }
+}
+
+.action {
+  // .menu-item {
+  //   border: 1px solid #0DB3A6;
+  //   line-height: 30px;
+  //   margin-top: 14px;
+  //   margin-right: 12px;
+  //   color: #0DB3A6;
+  //   -webkit-border-radius: 2px;
+  //   -moz-border-radius: 2px;
+  //   border-radius: 2px;
+  //   text-align: center;
+  //   &.button:hover {
+  //     background: #0DB3A6;
+  //     color: #fff;
+  //   }
+  // }
+  .lang-switch {
+    border: none;
+    padding: 0;
+    position: relative;
+    margin-right: 32px;
+    cursor: pointer;
+    .locale {
+      margin: 0 5px;
+      font-size: 14px;
+    }
+  }
+}
+
+.icon-down {
+  font-size: 8px;
+}
+
+.icon-hot {
+  width: 25px;
+  height: 8px;
+  position: absolute;
+  left: 148px;
+}
+
+.icon-new {
+  width: 25px;
+  height: 8px;
+  position: absolute;
+  left: 108px;
+}
+
+.solution-span {
+  height: 36px;
+  padding-left: 10px;
 }
 </style>
