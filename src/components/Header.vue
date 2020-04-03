@@ -204,7 +204,6 @@ export default {
     padding: 0 25px;
     img {
       width: 117px;
-      margin-top: 15px;
     }
   }
   .menu {
