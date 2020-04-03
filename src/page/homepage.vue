@@ -40,7 +40,11 @@
             {{ tabData.tabTitle }}
           </span>
         </div>
-        <div class="content-panel">
+        <div
+          v-if="selectdTab"
+          class="content-panel"
+          :class="{'is-sliding': transitionStart}"
+        >
           <p class="panel-desc">
             {{ selectdTab && selectdTab.tabDesc }}
           </p>
@@ -51,7 +55,6 @@
           >
         </div>
       </section>
-      <section class="advantages" />
       <section class="industries" />
       <section class="cases" />
       <section class="help" />
@@ -77,7 +80,8 @@ export default {
         tabDesc: '',
         tabImgURL: '',
         isActive: true,
-      }]
+      }],
+      transitionStart: false
     };
   },
   computed: {
@@ -148,6 +152,15 @@ export default {
      * @param {number} index 需要激活的下标
      */
     setActive(index = 0) {
+      // 重置开始切换标识位
+      this.transitionStart = false;
+
+      // 利用setTimeout阻止vue使用队列优化变量在一个tick内的变动，从而完成'is-sliding'这个class的切换
+      setTimeout(() => {
+        // 设置开始切换标识位，开启切换动画
+        this.transitionStart = true;
+      }, 0);
+
       this.tabsData.forEach(tabData => {
         tabData.isActive = false;
       });
@@ -270,6 +283,22 @@ export default {
   }
   &-img {
     height: 450px;
+  }
+}
+
+.content-panel {
+  transform: translate(-50px, 0);
+  &.is-sliding {
+    transform: translate(0, 0);
+    transition: all .5s;
+  }
+}
+
+.learn-more {
+  text-align: center;
+  padding: 50px 0;
+  a {
+    color: $primary-color;
   }
 }
 

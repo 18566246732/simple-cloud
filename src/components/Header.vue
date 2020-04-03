@@ -178,7 +178,8 @@ export default {
   },
   mounted() {
     document.addEventListener('click', (e) => {
-      if (!this.$refs.langSwitch.contains(e.target)) {
+      // 如果语言选择器不存在，或者点击的位置不是语言选择器，则收起语言选择器面板
+      if (!this.$refs.langSwitch || !this.$refs.langSwitch.contains(e.target)) {
         this.showLangSelectionPanel = false;
       }
     });
