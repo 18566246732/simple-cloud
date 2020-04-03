@@ -16,6 +16,11 @@ import "./styles/index.scss";
 import { zhSimplified } from "./locale/zh-simplified";
 import { zhTraditional } from "./locale/zh-traditional";
 
+// 引入辅助函数
+import { helper } from "./helper";
+// 挂载
+Vue.prototype.$helper = helper;
+
 Vue.config.productionTip = false;
 Vue.use(VueI18n);
 
