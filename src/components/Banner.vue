@@ -13,6 +13,28 @@
           v-html="desc"
         /> -->
         <pre class="desc">{{ desc }}</pre>
+        <span class="banner-pc__btn">
+          <a
+            :href="mainActionBtnURL"
+          ><s-button
+            size="large"
+            type="primary"
+          >{{ mainActionBtnText }}</s-button></a>
+
+          <a
+            v-if="usingSubAction"
+            :href="subActionBtnURL"
+          ><s-button
+            size="large"
+            plain
+          >{{ subActionBtnText }}</s-button></a>
+        </span>
+      </div>
+      <img
+        class="banner-figure"
+        :src="imgURL"
+      >
+      <span class="banner-mobile__btn">
         <a
           :href="mainActionBtnURL"
         ><s-button
@@ -27,11 +49,7 @@
           size="large"
           plain
         >{{ subActionBtnText }}</s-button></a>
-      </div>
-      <img
-        class="banner-figure"
-        :src="imgURL"
-      >
+      </span>
     </li>
   </div>
 </template>
@@ -136,6 +154,44 @@ $banner-height: 560px;
   }
   .desc {
     width: 561px;
+  }
+}
+
+.banner-mobile__btn {
+  display: none;
+}
+
+@media screen and (max-width: 650px) {
+  .logo {
+    padding: 0 12px;
+  }
+  .banner-content {
+    .title {
+      font-size: 20px;
+      line-height: initial;
+    }
+    .desc {
+      min-height: 60px;
+      font-size: 13px;
+      margin: 15px 0 17px;
+      width: initial;
+    }
+  }
+  .banner-figure {
+    width: auto;
+    height: 210px;
+    position: initial;
+  }
+  .banner-content {
+    padding: 95px 20px 10px;
+    width: 100%;
+    text-align: center;
+  }
+  .banner-mobile__btn {
+    display: initial;
+  }
+  .banner-pc__btn {
+    display: none;
   }
 }
 

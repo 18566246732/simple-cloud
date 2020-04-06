@@ -48,7 +48,11 @@ const i18n = new VueI18n({
   messages
 });
 
+
 new Vue({
   render: h => h(App),
   i18n
 }).$mount('#app');
+
+// 通过js设置动态的设置meta
+document.querySelector("meta[name='viewport']")["content"] = "width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no";

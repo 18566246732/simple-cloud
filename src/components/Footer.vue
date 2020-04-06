@@ -86,11 +86,6 @@ export default {
             text: '加入我们',
             link: "http://join.fanruan.com",
             target: '_blank'
-          },
-          {
-            text: '微信服务号',
-            link: "http://join.fanruan.com",
-            target: '_blank'
           }
         ]
       },
@@ -151,6 +146,9 @@ footer {
     color: #C9CED9;
     margin-bottom: 10px;
     display: block;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
   }
   &.text {
     width: 44%;
@@ -160,6 +158,9 @@ footer {
   }
   &.img {
     width: 20%;
+    .title {
+      margin-bottom: 10px;
+    }
     img {
       width: 100px;
       height: 100px;
@@ -200,6 +201,7 @@ footer {
 
 .copyright {
   padding: 0 10px 37px;
+  text-align: left;
   a {
     color: #91A1B7;
     display: flex;
@@ -251,5 +253,27 @@ footer {
 .icon-xiaoxi {
   font-size: 32px;
   color: #fff;
+}
+
+@media screen and (max-width: 650px) {
+  .technical-support-button {
+    display: none;
+  }
+  footer .content {
+    display: block;
+    padding-top: 20px;
+  }
+  .link-wrapper {
+    width: 90%!important;
+    margin: 0 auto;
+    padding-left: 0;
+    .title {
+      margin-top: 20px;
+    }
+    .link {
+      display: inline-block;
+      margin-right: 20px;
+    }
+  }
 }
 </style>

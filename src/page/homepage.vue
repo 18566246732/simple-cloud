@@ -29,30 +29,47 @@
         <h1 class="section-title">
           和我们一起规范业务流程、促进团队协作
         </h1>
-        <div class="tabs content-wrapper">
-          <span
+        <div class="content pc">
+          <div class="tabs content-wrapper">
+            <span
+              v-for="(tabData, index) in tabsData"
+              :key="index"
+              class="tab"
+              :class="tabData.isActive ? 'active' : ''"
+              @click="handleWorkFlowTabClick(index)"
+            >
+              {{ tabData.title }}
+            </span>
+          </div>
+          <div
+            v-if="selectdTab"
+            class="content-panel"
+            :class="{'is-sliding': transitionStart}"
+          >
+            <p class="panel-desc">
+              {{ selectdTab && selectdTab.desc }}
+            </p>
+            <img
+              :src="selectdTab && selectdTab.imgURL"
+              class="panel-img"
+              alt="imgURL"
+            >
+          </div>
+        </div>
+        <div class="content mobile">
+          <div
             v-for="(tabData, index) in tabsData"
             :key="index"
-            class="tab"
-            :class="tabData.isActive ? 'active' : ''"
-            @click="handleWorkFlowTabClick(index)"
+            class="tab-item"
           >
-            {{ tabData.title }}
-          </span>
-        </div>
-        <div
-          v-if="selectdTab"
-          class="content-panel"
-          :class="{'is-sliding': transitionStart}"
-        >
-          <p class="panel-desc">
-            {{ selectdTab && selectdTab.desc }}
-          </p>
-          <img
-            :src="selectdTab && selectdTab.imgURL"
-            class="panel-img"
-            alt="imgURL"
-          >
+            <div class="title">
+              {{ tabData.title }}
+            </div>
+            <div class="desc">
+              {{ tabData.desc }}
+            </div>
+            <img :src="tabData.imgURL">
+          </div>
         </div>
         <div class="learn-more">
           <a href="/index/func">了解更多功能</a>
@@ -437,6 +454,20 @@ export default {
   }
 }
 
+@media screen and (max-width: 650px) {
+  /deep/ .ant-carousel .slick-dots-bottom {
+    top: 530px;
+    li {
+      margin: 0 7px;
+      width: 6px;
+      height: 6px;
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      border-radius: 6px;
+    }
+  }
+}
+
 .thunder {
   background: url('https://blog-assets.jiandaoyun.com/index/home/spring_thunder_pc.jpg') center center no-repeat;
   background-size: cover;
@@ -732,6 +763,10 @@ export default {
   }
 }
 
+.content.mobile {
+  display: none;
+}
+
 @media screen and (max-width: 650px) {
   .advantages {
     .content-wrapper .ant-col{
@@ -747,6 +782,160 @@ export default {
     .title {
       margin: 15px 0 8px;
       font-size: 12px;
+    }
+  }
+  .section-title {
+    font-size: 18px;
+    text-align: center;
+    padding: 40px 0 20px;
+  }
+  .tab {
+    font-size: 15px;
+    display: inline-block;
+    position: relative;
+    &:first-letter {
+      font-size: 19px;
+    }
+  }
+  .content {
+    &.pc {
+      display: none;
+    }
+    &.mobile {
+      padding: 0 20px 20px;
+      display: block;
+      .title {
+        font-size: 15px;
+        display: inline-block;
+        position: relative;
+        &::before {
+          background: #E7E7E7;
+          opacity: 1;
+          content: '';
+          width: 100%;
+          height: 6px;
+          border-radius: 3px;
+          position: absolute;
+          bottom: -8px;
+          left: 0;
+        }
+      }
+      .desc {
+        margin: 30px 0 22px;
+        color: #5E6D82;
+      }
+      img {
+        width: 100%;
+      }
+    }
+  }
+  .learn-more {
+    padding: 20px 0;
+  }
+  .advantages {
+    padding-bottom: 0;
+    img {
+      width: 76px;
+      height: 76px;
+    }
+  }
+
+  .industries {
+    .content-wrapper .backgroud-img {
+      margin: 30px 25px;
+    }
+  }
+
+  .cases {
+    .logo-list {
+      width: 750px;
+      -webkit-transition: all 218ms;
+      -moz-transition: all 218ms;
+      -o-transition: all 218ms;
+      transition: all 218ms;
+      height: 140px;
+      .logo {
+        width: 150px;
+        height: 120px;
+        p {
+          margin-top: 8px;
+        }
+      }
+      .img-box {
+        opacity: 1;
+        width: 80px;
+        height: 80px;
+        margin: 0 auto;
+      }
+    }
+    .desc {
+      width: 255px;
+      padding: 15px;
+      background: #fff;
+      -webkit-box-shadow: 0 2px 12px 0 rgba(218,218,218,.6);
+      box-shadow: 0 2px 12px 0 rgba(218,218,218,.6);
+      -webkit-border-radius: 0 0 4px 4px;
+      -moz-border-radius: 0 0 4px 4px;
+      border-radius: 0 0 4px 4px;
+      &::before {
+        content: '';
+        display: block;
+        width: 12px;
+        height: 12px;
+        background: #fff;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        -webkit-transform: rotate(45deg) translate(-50%,0);
+        -moz-transform: rotate(45deg) translate(-50%,0);
+        -ms-transform: rotate(45deg) translate(-50%,0);
+        -o-transform: rotate(45deg) translate(-50%,0);
+        transform: rotate(45deg) translate(-50%,0);
+      }
+    }
+    .iconfont {
+      display: none;
+    }
+  }
+
+  .help {
+    .title {
+      padding-top: 40px;
+      font-size: 18px;
+    }
+    .sub-title {
+      font-size: 13px;
+      margin: 15px 0;
+    }
+    .help-item {
+      width: 277px;
+      height: 236px;
+      margin: 0 15px 24px;
+    }
+    .help-img {
+      margin-left: 10px;
+      width: 45px;
+      height: 45px;
+    }
+    .help-title {
+      margin: 25px 0 12px 15px;
+      font-size: 17px;
+    }
+    .help-detail {
+      margin-left: 15px;
+      font-size: 13px;
+      line-height: 22px;
+    }
+    .help-content {
+      padding: 25px 15px 0 0;
+    }
+    .help-link {
+      height: 40px;
+      line-height: 40px;
+      font-size: 15px;
+    }
+    .content-wrapper {
+      margin-bottom: 10px;
     }
   }
 }

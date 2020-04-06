@@ -9,6 +9,10 @@
       </a>
     </span>
 
+    <!-- <i class="iconfont icon-menu" /> -->
+
+    <!-- <a class="header-item menu-icon"><i class="iconfont icon-menu" /></a> -->
+
     <span class="menu">
       <a
         class="menu-item active"
@@ -134,10 +138,12 @@
       >
         <div class="lang-switch__action">
           <i class="iconfont icon-earth" />
-          <span class="locale">{{ langData.find(langDataItem => langDataItem.selected).text }}</span>
+          <span class="locale">{{ (langData.find(langDataItem => langDataItem.selected) || {}).text }}</span>
           <!-- TODO: -->
           <i class="iconfont icon-icon_down_arrow" />
         </div>
+
+
         <div
           v-if="showLangSelectionPanel"
           class="lang-list"
@@ -168,11 +174,13 @@
           </div> -->
         </div>
       </a>
+      <i class="iconfont icon-menu" />
     </span>
   </header>
 </template>
 
 <script>
+const cachedLang = localStorage.getItem('lang');
 export default {
   name: "Header",
   data() {
@@ -191,22 +199,31 @@ export default {
       }
     });
 
+    // 若无缓存，则默认是简体中文
+    const isZhS = !cachedLang || cachedLang === 'zhS';
+
     // 初始化数据
     this.langData = [
       {
         text: '简体中文',
-        selected: true
+        selected: isZhS
       },
       {
         text: '繁體中文',
-        selected: false
+        selected: !isZhS
       }
     ];
   },
   methods: {
     handleLangSwitch(index = 0) {
+      // 切换语言选择面板
       this.langData.forEach(langDataItem => langDataItem.selected = false);
       this.langData[index].selected = true;
+      // 实现繁简体切换
+      const selectedLang = index === 0 ? 'zhS' : 'zhT';
+      this.$i18n.locale = selectedLang;
+      // 缓存选中的值
+      localStorage.setItem('lang', selectedLang);
     }
   }
 };
@@ -416,5 +433,30 @@ export default {
 
 .icon-ok {
   float: right;
+}
+
+.icon-menu {
+  color: #1F2D3D;
+  font-size: 30px;
+  cursor: pointer;
+  float: right;
+  padding: 0 12px;;
+  display: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .icon-menu {
+    display: block;
+  }
+
+  .action .lang-switch, .menu {
+    display: none;
+  }
+
+  .homepage {
+    .logo {
+      padding: 0 12px;
+    }
+  }
 }
 </style>

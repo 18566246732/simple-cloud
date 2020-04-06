@@ -66,4 +66,23 @@ export default {
   }
 
 }
+
+@media screen and (max-width: 1000px) {
+  .simple-cloud-button {
+    margin-right: 10px;
+    padding: 0 12px;
+    background: #fff;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .simple-cloud-button.s-button-large {
+    display: inline-block;
+    line-height: 36px;
+    font-size: 16px;
+    padding: 0 30px;
+    margin-top: 30px;
+    border-radius: 4px;
+  }
+}
 </style>
