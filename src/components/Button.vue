@@ -41,6 +41,7 @@ export default {
   -moz-border-radius: 2px;
   border-radius: 2px;
   padding: 0 25px;
+  font-size: 16px;
   cursor: pointer;
   text-align: center;
   &.s-button-initial:hover {

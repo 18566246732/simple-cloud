@@ -20,7 +20,7 @@
         @mouseleave="showSolution = false"
       >
         <a href="/index/solution">
-          解决方案
+          {{ $t("header.menu.solution") }}
           <i class="iconfont icon-down" />
         </a>
         <div
@@ -95,24 +95,24 @@
       <a
         class="menu-item"
         href="/index/customer_case"
-      >客户案例</a>
+      >{{ $t("header.menu.cases") }}</a>
       <a
         class="menu-item"
         href="/index/func"
-      >功能</a>
+      >{{ $t("header.menu.function") }}</a>
       <a
         class="menu-item"
         href="/index/price"
-      >定价</a>
+      >{{ $t("header.menu.price") }}</a>
       <a
         class="menu-item"
         href="/index/custom"
-      >定制</a>
+      >{{ $t("header.menu.customize") }}</a>
       <a
         class="menu-item"
         href="https://hc.jiandaoyun.com"
         target="fx_help"
-      >帮助</a>
+      >{{ $t("header.menu.help") }}</a>
     </span>
 
     <span class="action">
@@ -132,34 +132,40 @@
         class="menu-item lang-switch"
         @click="showLangSelectionPanel = true"
       >
-        <i class="iconfont icon-global" />
-        <span class="locale">{{ $t("header.action.zhS") }}</span>
-        <!-- TODO: -->
-        <!-- <i class="el-icon-arrow-down el-icon--right" /> -->
+        <div class="lang-switch__action">
+          <i class="iconfont icon-earth" />
+          <span class="locale">{{ langData.find(langDataItem => langDataItem.selected).text }}</span>
+          <!-- TODO: -->
+          <i class="iconfont icon-icon_down_arrow" />
+        </div>
         <div
           v-if="showLangSelectionPanel"
           class="lang-list"
         >
           <div
+            v-for="(langDataItem, index) in langData"
+            :key="index"
             class="lang-item"
-            @click="selectedLang = 'zhS'"
+            :class="langDataItem.selected ? 'selected' : ''"
+            @click="handleLangSwitch(index)"
           >
-            {{ $t("header.action.zhS") }}
+            {{ langDataItem.text }}
             <i
-              v-if="selectedLang === 'zhS'"
+              v-if="langDataItem.selected"
               class="iconfont icon-ok"
             />
           </div>
-          <div
+          <!-- <div
             class="lang-item"
+            :class="selectedLang === 'zhT' ? 'selected' : ''"
             @click="selectedLang = 'zhT'"
           >
-            {{ $t("header.action.zhT") }}
+            繁體中文
             <i
               v-if="selectedLang === 'zhT'"
               class="iconfont icon-ok"
             />
-          </div>
+          </div> -->
         </div>
       </a>
     </span>
@@ -173,7 +179,8 @@ export default {
     return {
       showSolution: false,
       showLangSelectionPanel: false,
-      selectedLang: 'zhS'
+      selectedLang: 'zhS',
+      langData: []
     };
   },
   mounted() {
@@ -183,6 +190,24 @@ export default {
         this.showLangSelectionPanel = false;
       }
     });
+
+    // 初始化数据
+    this.langData = [
+      {
+        text: '简体中文',
+        selected: true
+      },
+      {
+        text: '繁體中文',
+        selected: false
+      }
+    ];
+  },
+  methods: {
+    handleLangSwitch(index = 0) {
+      this.langData.forEach(langDataItem => langDataItem.selected = false);
+      this.langData[index].selected = true;
+    }
   }
 };
 </script>
@@ -303,7 +328,7 @@ export default {
 
 .lang-list {
   position: absolute;
-    top: 40px;
+    top: 54px;
     right: -12px;
     background: #fff;
     -webkit-border-radius: 3px;
@@ -316,7 +341,7 @@ export default {
 }
 
 .lang-item {
-      width: 127px;
+    width: 127px;
     height: 40px;
     line-height: 40px;
     color: #474b51;
@@ -324,6 +349,9 @@ export default {
     padding: 0 15px;
     &:hover {
       background: $primary-color-light;
+    }
+    &.selected {
+      color: $primary-color;
     }
 }
 
@@ -377,5 +405,16 @@ export default {
 .solution-span {
   height: 36px;
   padding-left: 10px;
+}
+
+.lang-switch__action {
+  display: flex;
+  align-items: center;
+  color: $primary-color;
+}
+
+
+.icon-ok {
+  float: right;
 }
 </style>

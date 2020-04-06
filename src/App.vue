@@ -17,13 +17,13 @@ export default {
 
 <style>
 @font-face {
-  font-family: "PingFang SC M";
+  font-family: "PingFang SC";
   src: url('./assets/font/PingFangSC.ttf');
 }
 
 #app {
   /* font-family: Avenir, Helvetica, Arial, sans-serif; */
-  font-family: "PingFang SC M", "Source Sans Pro", "Helvetica Neue", "Microsoft Yahei", Helvetica, Arial, "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+  font-family: "PingFang SC", "Source Sans Pro", "Helvetica Neue", "Microsoft Yahei", Helvetica, Arial, "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

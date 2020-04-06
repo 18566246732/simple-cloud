@@ -5,7 +5,7 @@ import App from './App.vue';
 import VueI18n from 'vue-i18n';
 
 // 按需引入，减小runtime~chunk的大小
-import { Carousel } from 'ant-design-vue';
+import { Carousel, Col, Row } from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
 
 import Button from "./components/Button.vue";
@@ -25,7 +25,7 @@ Vue.config.productionTip = false;
 Vue.use(VueI18n);
 
 // 使用第三方组件
-[Carousel].forEach(component => {
+[Carousel, Col, Row].forEach(component => {
   Vue.use(component);
 });
 
