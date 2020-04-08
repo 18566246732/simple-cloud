@@ -1,0 +1,27 @@
+{
+  "editor.tabSize": 2,
+
+  "emmet.triggerExpansionOnTab": true,
+  "emmet.includeLanguages": {
+      "vue-html": "html",
+      "vue": "html"
+  },
+
+  "files.associations": {
+    "*.vue": "vue"
+  },
+
+  "vetur.validation.template": false,
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+
+  "stylelint.enable": true,
+  "stylelint.autoFix": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  // https://github.com/microsoft/vscode-eslint/issues/833
+  "editor.codeActionsOnSaveTimeout": 1200,
+  "eslint.enable": true
+}
