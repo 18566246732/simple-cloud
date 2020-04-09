@@ -7,12 +7,13 @@
         <h2 class="title">
           {{ title }}
         </h2>
-        <!-- 插值来自代码中的固定数据，不会有xss风险 -->
-        <!-- <div
-          class="desc"
-          v-html="desc"
-        /> -->
-        <pre class="desc">{{ desc }}</pre>
+        <!-- 避免使用v-html -->
+        <div class="desc">
+          <span
+            v-for="(text, index) in desc.split('<br/>')"
+            :key="index"
+          >{{ text }}<br></span>
+        </div>
         <span class="banner-pc__btn">
           <a
             :href="mainActionBtnURL"
@@ -177,10 +178,11 @@ $banner-height: 560px;
       width: initial;
     }
   }
-  .banner-figure {
+  img.banner-figure {
     width: auto;
     height: 210px;
     position: initial;
+    margin: auto;
   }
   .banner-content {
     padding: 95px 20px 10px;

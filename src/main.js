@@ -21,6 +21,15 @@ import { helper } from "./helper";
 // 挂载
 Vue.prototype.$helper = helper;
 
+// 根据设备宽度判断是否移动端视图
+const deviceWidth = document.documentElement.clientWidth;
+const isMobile = deviceWidth < 750;
+
+// 挂载全局数据
+window.__INITIAL_DATA__ = {
+  isMobile
+};
+
 Vue.config.productionTip = false;
 Vue.use(VueI18n);
 

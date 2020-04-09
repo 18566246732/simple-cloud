@@ -62,9 +62,10 @@ export default {
   &.s-button-large {
     line-height: 58px;
     font-size: 20px;
+    margin-top: 0;
     padding: 0 36px;
+    margin-right: 30px;
   }
-
 }
 
 @media screen and (max-width: 1000px) {
@@ -83,6 +84,7 @@ export default {
     padding: 0 30px;
     margin-top: 30px;
     border-radius: 4px;
+    margin-right: 20px;
   }
 }
 </style>
