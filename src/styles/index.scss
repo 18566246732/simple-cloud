@@ -16,5 +16,14 @@ h1, h2, h3, h4, h5, h6, li, ol, p, ul {
   padding: 0;
 }
 
+// 全局覆盖antd的样式
+.ant-drawer-left.ant-drawer-open, .ant-drawer-right.ant-drawer-open {
+  transform: none !important;
+}
+
+.ant-drawer.ant-drawer-bottom .ant-drawer-body{
+  padding: 0;
+}
+
 
 
