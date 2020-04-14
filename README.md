@@ -17,7 +17,7 @@ npm run serve
 npm run build
 ```
 
-### development configuration
+## development configuration
 
 > 必须使用 vscode，并安装以下插件
 
@@ -27,3 +27,7 @@ npm run build
 - [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur) vue 官方插件
 
 > 如有其他插件可能会造成冲突 ，如： `tslint`  等 
+
+## 关于官网的问题和建议
+
+https://www.yuque.com/docs/share/e72ec015-c000-4ead-8cf7-4cf58ef4e2d9?#
